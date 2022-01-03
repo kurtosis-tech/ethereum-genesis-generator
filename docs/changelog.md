@@ -1,5 +1,12 @@
 # TBD
 
+# 0.1.4
+### Fixes
+* No longer adds 300s to the CL genesis timestamp
+
+### Changes
+* Made Docker image more compatible with Kurtosis
+
 # 0.1.3
 ### Changes
 * Don't start a Python HTTP server with the entrypoint script - just do the genesis generation
