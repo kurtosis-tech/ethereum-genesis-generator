@@ -1,4 +1,6 @@
 # TBD
+
+# 0.1.4
 ### Fixes
 * No longer adds 300s to the CL genesis timestamp
 
