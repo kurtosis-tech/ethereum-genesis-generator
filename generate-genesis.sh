@@ -19,6 +19,7 @@ DEPOSIT_CONTRACT_FILENAME="deposit_contract.txt"
 DEPLOY_BLOCK_FILENAME="deploy_block.txt"
 TRANCHES_DIRNAME="tranches"
 CL_GENESIS_FILENAME="genesis.ssz"
+JWT_SECRET_FILENAME="jwtsecret"
 
 DEPOSIT_CONTRACT_ADDRESS_PROPERTY_NAME="DEPOSIT_CONTRACT_ADDRESS"
 CL_GENESIS_TIMESTAMP_PROPERTY_NAME="MIN_GENESIS_TIME"
@@ -123,5 +124,17 @@ if ! /usr/local/bin/eth2-testnet-genesis phase0 \
         --tranches-dir "${tranches_dirpath}" \
         --state-output "${cl_genesis_filepath}"; then
     echo "Error: An error occurred generating the CL genesis information" >&2
+    exit 1
+fi
+
+# Generate JWT secret
+el_jwt_secret_filepath="${el_output_dirpath}/${JWT_SECRET_FILENAME}"
+if ! openssl rand -hex 32 | tr -d "\n" > "${el_jwt_secret_filepath}"; then
+    echo "Error: Couldn't generate the JWT secret key to '${el_jwt_secret_filepath}'" >&2
+    exit 1
+fi
+cl_jwt_secret_filepath="${cl_output_dirpath}/${JWT_SECRET_FILENAME}"
+if ! cp "${el_jwt_secret_filepath}" "${cl_jwt_secret_filepath}"; then
+    echo "Error: Couldn't copy the JWT secret from '${el_jwt_secret_filepath}' to '${cl_jwt_secret_filepath}'" >&2
     exit 1
 fi
