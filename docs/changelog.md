@@ -1,4 +1,6 @@
 # TBD
+
+# 0.1.5
 ### Features
 * The generator now outputs the JWT secret key as well
 
