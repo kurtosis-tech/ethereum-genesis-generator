@@ -1,3 +1,5 @@
+# DEPRECATION: This repo (which was a fork) is now deprecated in place of Docker images built directly from the main repo!
+
 # ethereum-genesis-generator
 
 Create a ethereum consensus/execution layer testnet genesis and expose it via a webserver for testing purposes.
